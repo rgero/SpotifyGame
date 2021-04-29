@@ -1,0 +1,10 @@
+.content {
+  margin:auto;
+  padding: 20px;
+}
+.square {
+  height: 250px;
+  width: 250px;
+  background-color: green;
+  margin:auto;
+}
