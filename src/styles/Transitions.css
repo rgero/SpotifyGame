@@ -1,0 +1,19 @@
+.spotifyWrapper-enter {
+  opacity: 0;
+}
+.spotifyWrapper-enter-active {
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.spotifyWrapper-exit {
+  opacity: 1;
+}
+.spotifyWrapper-exit-active {
+  opacity: 0;
+  transition: all 500ms;
+}
+
+.spotifyWrapper-exit-done {
+  opacity: 0;
+}

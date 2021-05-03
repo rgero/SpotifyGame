@@ -1,38 +1,9 @@
 .GameWindow {
   text-align: center;
   margin: auto;
-}
-
-.toggleButton {
-  padding: 10px;
-  background-color: #a5afd7;
-  width: 125px;
-  margin:auto;
-  border-radius: 15px;
-  font-weight: 500;
-}
-
-.toggleButton:hover
-{
-  background-color: #D7CDA5;
-}
-
-.spotifyWrapper-enter {
-  opacity: 0;
-}
-.spotifyWrapper-enter-active {
-  opacity: 1;
-  transition: opacity 500ms;
-}
-
-.spotifyWrapper-exit {
-  opacity: 1;
-}
-.spotifyWrapper-exit-active {
-  opacity: 0;
-  transition:opacity 500ms;
-}
-
-.spotifyWrapper-exit-done {
-  opacity: 0;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  background-color:#d9ead3;
+  width: 60%;
+  border-radius: 25px;
 }
