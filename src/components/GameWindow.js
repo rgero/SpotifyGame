@@ -4,7 +4,7 @@ import '../styles/GameWindow.css';
 import '../styles/Transitions.css';
 import '../styles/Button.css';
 
-import SpotifyWrapper from './SpotifyWrapper'
+import SpotifyWrapper from './SpotifyPlayer/SpotifyWrapper';
 import Scoreboard from './Scoreboard';
 
 const GameWindow = () => {

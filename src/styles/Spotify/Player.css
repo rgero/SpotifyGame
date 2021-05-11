@@ -1,0 +1,23 @@
+.SpotifyPlayer {
+  margin: auto;
+  padding: 15px;
+
+}
+.now-playing__name {
+    font-size: 1.5em;
+    margin-bottom: 0.2em;
+}
+
+.now-playing__artist {
+    margin-bottom: 1em;
+}
+
+.now-playing__img {
+    margin:auto;
+    width: 45%;
+}
+
+.now-playing__img img {
+    max-width: 80vmin;
+    width: 100%;
+}
