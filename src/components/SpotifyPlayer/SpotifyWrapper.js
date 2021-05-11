@@ -1,15 +1,14 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
 import * as $ from "jquery";
-import { authEndpoint, clientId, redirectUri, scopes } from "../../config";
-import hash from "../../helpers/hash";
 import Player from "./Player";
 import "../../styles/SpotifyWrapper.css";
 
 class SpotifyWrapper extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      token: null,
+      token: props.token ? props.token : "",
       item: {
         album: {
           images: [{ url: "" }]
@@ -30,14 +29,7 @@ class SpotifyWrapper extends Component {
 
 
   componentDidMount() {
-    let _token = hash.access_token;
-
-    if (_token) {
-      this.setState({
-        token: _token
-      });
-      this.getCurrentlyPlaying(_token);
-    }
+    this.getCurrentlyPlaying(this.state.token);
 
     // set interval for polling every 5 seconds
     this.interval = setInterval(() => this.tick(), 5000);
@@ -55,6 +47,7 @@ class SpotifyWrapper extends Component {
 
 
   getCurrentlyPlaying(token) {
+    // We want to keep the token input variable for the initial push.
     $.ajax({
       url: "https://api.spotify.com/v1/me/player",
       type: "GET",
@@ -83,16 +76,6 @@ class SpotifyWrapper extends Component {
     return (
       <div className="SpotifyWrapper">
         <header className="SpotifyWrapper-header">
-          {!this.state.token && (
-            <a
-              className="btn btn--loginSpotifyWrapper-link"
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-                "%20"
-              )}&response_type=token&show_dialog=true`}
-            >
-              Login to Spotify
-            </a>
-          )}
           {this.state.token && !this.state.no_data && (
             <Player
               item={this.state.item}
@@ -111,4 +94,10 @@ class SpotifyWrapper extends Component {
   }
 }
 
-export default SpotifyWrapper;
+const mapStateToProps = (state, props) => {
+    return {
+        token: state.spotify.token
+    };
+}
+
+export default connect(mapStateToProps)(SpotifyWrapper);

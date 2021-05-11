@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import * as $ from "jquery";
 import '../styles/Button.css';
 import '../styles/Scoreboard.css';
+import { setExtended } from '../actions/spotify';
 
 class Scoreboard extends Component {
 
@@ -9,38 +11,13 @@ class Scoreboard extends Component {
     {
         super(props);
         this.state = {
+            token: props.token ? props.token : "",
             correctAnswers: 0,
             wrongAnswers: 0,
         }; 
 
         this.addScore = this.addScore.bind(this);
-        this.playNextTrack = this.playNextTrack.bind(this);
-    }
-
-    playNextTrack(token){
-        $.ajax({
-            url: "https://api.spotify.com/v1/me/player/next",
-            type: "POST",
-            beforeSend: xhr => {
-                xhr.setRequestHeader("Authorization", "Bearer " + token);
-            },
-            success: data => {
-                if(!data) {
-                    this.setState({
-                        no_data: true,
-                    });
-                    return;
-                }
-
-                this.setState({
-                    item: data.item,
-                    is_playing: data.is_playing,
-                    progress_ms: data.progress_ms,
-                    no_data: false
-                });
-            }
-        });
-
+        this.startNextTrack = this.startNextTrack.bind(this);
     }
 
     addScore(correct) {
@@ -53,9 +30,21 @@ class Scoreboard extends Component {
             this.setState({wrongAnswers: wrong+1})
         }
 
-        // Push to next track.
-        console.log(this.state);
-        this.playNextTrack(this.state.token);
+        this.startNextTrack();
+    }
+
+    startNextTrack(){
+        $.ajax({
+            url: "https://api.spotify.com/v1/me/player/next",
+            type: "POST",
+            beforeSend: xhr => {
+                xhr.setRequestHeader("Authorization", "Bearer " + this.state.token);
+            },
+            success: data => {
+                console.log("Yay");
+            }
+        });
+        this.props.setExtended(false);
     }
 
     render() {
@@ -73,4 +62,18 @@ class Scoreboard extends Component {
     }
 }
 
-export default Scoreboard;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setExtended: (extended) => { 
+            dispatch(setExtended(extended))
+        },
+    }
+}
+
+const mapStateToProps = (state, props) => {
+    return {
+        token: state.spotify.token
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Scoreboard);
