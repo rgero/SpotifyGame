@@ -39,9 +39,6 @@ class Scoreboard extends Component {
             type: "POST",
             beforeSend: xhr => {
                 xhr.setRequestHeader("Authorization", "Bearer " + this.state.token);
-            },
-            success: data => {
-                console.log("Yay");
             }
         });
         this.props.setExtended(false);
@@ -66,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setExtended: (extended) => { 
             dispatch(setExtended(extended))
-        },
+        }
     }
 }
 

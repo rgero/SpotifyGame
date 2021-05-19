@@ -1,13 +1,11 @@
 // This is the spotify reducer
 const spotifyReducerDefaultState = {
   token: "",
-  playlistURL: "",
-
+  playlistURL: ""
 };
 const spotifyReducer = (state = spotifyReducerDefaultState, action) => {
     switch(action.type){
         case "SET_TOKEN":
-          console.log("Set Token: " + action.newToken);
           return {
             ...state,
             token: action.newToken

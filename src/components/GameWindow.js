@@ -2,7 +2,7 @@ import React from 'react';
 import {CSSTransition} from 'react-transition-group';
 import {connect} from 'react-redux';
 import { authEndpoint, clientId, redirectUri, scopes } from "../config";
-import { setToken } from "../actions/spotify";
+import { setToken, setExtended } from "../actions/spotify";
 import hash from "../helpers/hash";
 import '../styles/GameWindow.css';
 import '../styles/Transitions.css';
@@ -16,9 +16,12 @@ class GameWindow extends React.Component {
   constructor(props)
   {
     super(props)
+
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+
     this.state = {
       token: props.token ? props.token : "",
-      extended: props.extended ? props.extended : true
+      extended: props.extended ? props.extended : false
     }
   }
 
@@ -39,6 +42,11 @@ class GameWindow extends React.Component {
         extended: this.props.extended
       })
     }
+  }
+
+  toggleDisplay()
+  {
+    this.props.setExtended(!this.state.extended);
   }
 
   render(){
@@ -66,7 +74,7 @@ class GameWindow extends React.Component {
                     <Scoreboard/>
                   </div>
                 </CSSTransition>
-                <div onClick={()=>{this.setState({extended: !this.state.extended})}} className="toggleButton">
+                <div onClick={this.toggleDisplay} className="toggleButton">
                   {this.state.extended ? <div>Hide Display</div> : <div>Show Display</div>}
                 </div>
               </div>
@@ -82,6 +90,9 @@ const mapDispatchToProps = (dispatch) => {
         setToken: (token) => { 
             dispatch(setToken(token))
         },
+        setExtended: (extended) => { 
+            dispatch(setExtended(extended))
+        }
     }
 }
 
