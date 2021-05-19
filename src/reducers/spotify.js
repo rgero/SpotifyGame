@@ -1,7 +1,6 @@
 // This is the spotify reducer
 const spotifyReducerDefaultState = {
-  token: "",
-  playlistURL: ""
+  token: ""
 };
 const spotifyReducer = (state = spotifyReducerDefaultState, action) => {
     switch(action.type){
@@ -14,11 +13,6 @@ const spotifyReducer = (state = spotifyReducerDefaultState, action) => {
           return {
             ...state,
             extended: action.extended
-          }
-        case "SET_PLAYLIST":
-          return {
-            ...state,
-            playlistURL: action.newURL
           }
         default:
             return state;

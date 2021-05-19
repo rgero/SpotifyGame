@@ -21,7 +21,7 @@ class GameWindow extends React.Component {
 
     this.state = {
       token: props.token ? props.token : "",
-      extended: props.extended ? props.extended : false
+      extended: props.extended ? props.extended : true
     }
   }
 

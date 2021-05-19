@@ -10,10 +10,6 @@ class Player extends React.Component
     this.backgroundStyles = {
       backgroundImage:`url(${this.props.item.album.images[0].url})`,
     };
-
-    this.progressBarStyles = {
-      width: (this.props.progress_ms * 100 / this.props.item.duration_ms) + '%'
-    };
   }
 
   render() {
