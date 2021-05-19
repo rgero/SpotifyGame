@@ -17,6 +17,10 @@ Using Spotify's Rest API, I was able to construct a crude example of what I'm th
 There are issues with this current implementation
 
 - The user has to have Spotify open on their computer, since it's not actually being played through the browser
-- There is no way currently to progress to the next song. I'd need to make a PUT call, but that requires the user's token and I don't want to sloppily pass that around.
+- There is no way currently to progress to the next song. Yet.
 
-There could be a way to fix that. I found a node module that implements most of the functionality for Spotify. Might be worth using since then I can just import to the scoreboard and have control over the playback. Ideally what I am thinking is that the user will click "Right" or "Wrong" and the next track will load.
+---
+#Update on 2021-05-11
+
+- Made it so that you can progress the song when you click right/wrong. However the image doesn't update immediately since it only checks every 5 seconds.
+- Next thing to work on would be to hide the display immediately after you click right/wrong
