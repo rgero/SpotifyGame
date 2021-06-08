@@ -1,11 +1,9 @@
 import React from 'react';
-import {CSSTransition} from 'react-transition-group';
 import {connect} from 'react-redux';
 import { authEndpoint, clientId, redirectUri, scopes } from "../config";
 import { setToken, setExtended } from "../actions/spotify";
 import hash from "../helpers/hash";
 import '../styles/GameWindow.css';
-import '../styles/Transitions.css';
 import '../styles/Button.css';
 
 import SpotifyWrapper from './SpotifyPlayer/SpotifyWrapper';
@@ -21,7 +19,7 @@ class GameWindow extends React.Component {
 
     this.state = {
       token: props.token ? props.token : "",
-      extended: props.extended ? props.extended : true
+      extended: props.extended ? props.extended : false
     }
   }
 
@@ -64,16 +62,10 @@ class GameWindow extends React.Component {
             )}
             {this.state.token && (
               <div>
-                <CSSTransition
-                  in={this.state.extended}
-                  timeout={300}
-                  classNames="spotifyWrapper"
-                >
-                  <div className="GameWindow">
+                  <div className={this.state.extended ? "GameWindow" : "GameWindow_Hidden"}>
                     <SpotifyWrapper/>
                     <Scoreboard/>
                   </div>
-                </CSSTransition>
                 <div onClick={this.toggleDisplay} className="toggleButton">
                   {this.state.extended ? <div>Hide Display</div> : <div>Show Display</div>}
                 </div>

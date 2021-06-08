@@ -50,7 +50,7 @@ class Scoreboard extends Component {
                 <div onClick={()=>{this.addScore(false)}} className="wrongButton">
                     Wrong
                 </div>
-                <div>{this.state.wrongAnswers} - {this.state.correctAnswers}</div>
+                <div className="score">{this.state.wrongAnswers} - {this.state.correctAnswers}</div>
                 <div onClick={()=>{this.addScore(true)}} className="correctButton">
                     Correct
                 </div>

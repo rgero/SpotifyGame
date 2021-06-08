@@ -6,6 +6,23 @@
   background-color:#d9ead3;
   width: 60%;
   border-radius: 25px;
+  opacity: 1;
+  max-height: 1000px;
+  transition: all 0.5s ease-in;
+}
+
+.GameWindow_Hidden {
+  text-align: center;
+  margin: auto;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  background-color:#d9ead3;
+  width: 60%;
+  border-radius: 25px;
+  opacity: 0;
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
 }
 
 .container {
